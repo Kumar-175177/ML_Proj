@@ -3,6 +3,7 @@ Target Voice Separation Using Deep Neural Networks
 Project Overview
 This project focused on developing a voice filter to enhance a speaker's voice by reducing background noise. The implemented model utilized LSTM and Bi-LSTM networks, which were fine-tuned for hyperparameter optimization. To improve performance, the audio length for training was extended from 3 to 10 seconds.
 LSTM/Bi-LSTM networks were chosen for their ability to handle sequential data and long-term dependencies, making them ideal for tasks involving speech temporal characteristics. Alternative architectures such as WaveNet, Conv-TasNet, UNet, or VoiceFilter were considered but were deemed more suitable for tasks requiring finer temporal resolution or spectrogram-based processing.
+
 Key Components
 Input and Output
 Input:
@@ -38,6 +39,13 @@ Post-Processing
 1. Reconstruction with Inverse STFT:
 - After filtering the spectrogram, inverse STFT was applied to convert the cleaned spectrogram back into a time-domain audio signal.
 - This step generated the final cleaned audio output.
+
+The SDR is a very common metric to evaluate source separation
+systems [22], which requires to know both the clean signal and
+the enhanced signal. It is an energy ratio, expressed in dB, between the energy of the target signal contained in the enhanced
+signal and the energy of the errors (coming from the interfering
+speakers and artifacts). Thus, the higher it is, the better
+
 Evaluation Metrics
 1. Signal-to-Distortion Ratio (SDR):
 - Measured distortion reduction in the output audio compared to the noisy input. Higher SDR indicates cleaner output.
